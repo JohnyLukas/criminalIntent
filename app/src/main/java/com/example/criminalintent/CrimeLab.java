@@ -17,11 +17,11 @@ public class CrimeLab {
         return crimeLab;
     }
 
-    private  CrimeLab(Context context) {
+    private CrimeLab(Context context) {
         crimes = new ArrayList<>();
         for (int i = 0; i < 100; i++) {         //Generate test objects
             Crime crime = new Crime();
-            crime.setTitle("Crime #" + i);
+            crime.setTitle(context.getString(R.string.crime_number, i));
             crime.setSolved(i % 2 == 0);
             crimes.add(crime);
         }
