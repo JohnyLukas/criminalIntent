@@ -1,5 +1,8 @@
 package com.example.criminalintent;
 
+import android.content.Context;
+
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -8,6 +11,7 @@ public class Crime {
     private String title;
     private Date date;
     private boolean solved;
+    private DateFormat dateFormat;
 
     public Crime() {
         id = UUID.randomUUID();

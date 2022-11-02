@@ -16,6 +16,8 @@ import android.widget.EditText;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.text.DateFormat;
+
 public class CrimeFragment extends Fragment {
     private Crime crime;
     private EditText titleField;
@@ -52,7 +54,7 @@ public class CrimeFragment extends Fragment {
                 //TODO()
             }
         });
-        dateButton.setText(crime.getDate().toString());
+        dateButton.setText(DateFormat.getDateInstance(DateFormat.FULL).format(crime.getDate()));
         dateButton.setEnabled(false);
         solvedCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> crime.setSolved(isChecked));
 

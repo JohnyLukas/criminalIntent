@@ -1,14 +1,15 @@
 package com.example.criminalintent;
 
-import static com.google.android.material.internal.ContextUtils.getActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.DateFormat;
 import java.util.List;
 
 public class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeHolder> {
@@ -41,6 +42,7 @@ public class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeHolder>
 
         private final TextView titleTextView;
         private final TextView dateTextView;
+        private final ImageView solvedImageView;
         private Crime mCrime;
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -49,6 +51,7 @@ public class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeHolder>
 
             titleTextView = itemView.findViewById(R.id.crime_title);
             dateTextView = itemView.findViewById(R.id.crime_date);
+            solvedImageView = itemView.findViewById(R.id.crime_solved_ic);
         }
 
         @Override
@@ -59,7 +62,8 @@ public class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeHolder>
         public void bind (Crime crime){
             mCrime = crime;
             titleTextView.setText(mCrime.getTitle());
-            dateTextView.setText(mCrime.getDate().toString());
+            dateTextView.setText(DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.SHORT).format(mCrime.getDate()));
+            solvedImageView.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);
         }
     }
 }
