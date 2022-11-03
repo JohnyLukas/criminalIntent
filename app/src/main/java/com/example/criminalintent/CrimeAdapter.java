@@ -1,23 +1,23 @@
 package com.example.criminalintent;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.text.DateFormat;
 import java.util.List;
 
 public class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeHolder> {
 
-    private final List<Crime> mCrimes;
+    private final List<Crime> crimes;
 
-    public  CrimeAdapter(List<Crime> crimes) {
-        mCrimes = crimes;
+    public CrimeAdapter(List<Crime> crimes) {
+        this.crimes = crimes;
     }
 
     @NonNull
@@ -29,21 +29,22 @@ public class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeHolder>
 
     @Override
     public void onBindViewHolder(@NonNull CrimeAdapter.CrimeHolder holder, int position) {
-        Crime crime = mCrimes.get(position);
+        Crime crime = crimes.get(position);
         holder.bind(crime);
     }
 
     @Override
     public int getItemCount() {
-        return mCrimes.size();
+        return crimes.size();
     }
 
     public static class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+
         private final TextView titleTextView;
         private final TextView dateTextView;
         private final ImageView solvedImageView;
-        private Crime mCrime;
+        private Crime crime;
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_crime, parent, false));
@@ -56,13 +57,16 @@ public class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeHolder>
 
         @Override
         public void onClick (View view){
-            Toast.makeText(view.getContext(), mCrime.getTitle() + " clicked!", Toast.LENGTH_SHORT).show();
+            Context context = view.getContext();
+
+            Intent intent = CrimeActivity.newIntent(context, crime.getId());
+            context.startActivity(intent);
         }
 
         public void bind (Crime crime){
-            mCrime = crime;
-            titleTextView.setText(mCrime.getTitle());
-            dateTextView.setText(DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.SHORT).format(mCrime.getDate()));
+            this.crime = crime;
+            titleTextView.setText(crime.getTitle());
+            dateTextView.setText(DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.SHORT).format(crime.getDate()));
             solvedImageView.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);
         }
     }
