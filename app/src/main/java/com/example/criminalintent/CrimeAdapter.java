@@ -1,5 +1,6 @@
 package com.example.criminalintent;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,7 @@ public class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeHolder>
 
     public static class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+
         private final TextView titleTextView;
         private final TextView dateTextView;
         private final ImageView solvedImageView;
@@ -55,8 +57,10 @@ public class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeHolder>
 
         @Override
         public void onClick (View view){
-            Intent intent = CrimeActivity.newIntent(view.getContext(), crime.getId());
-            view.getContext().startActivity(intent);
+            Context context = view.getContext();
+
+            Intent intent = CrimeActivity.newIntent(context, crime.getId());
+            context.startActivity(intent);
         }
 
         public void bind (Crime crime){
