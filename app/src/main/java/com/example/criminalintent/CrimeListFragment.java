@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
+import java.util.UUID;
 
 public class CrimeListFragment extends Fragment {
 
@@ -40,7 +41,7 @@ public class CrimeListFragment extends Fragment {
             adapter = new CrimeAdapter(crimes);
             crimeRecyclerView.setAdapter(adapter);
         } else {
-            adapter.notifyItemChanged(3);
+            adapter.notifyItemRangeChanged(0, crimes.size());
         }
     }
 }
