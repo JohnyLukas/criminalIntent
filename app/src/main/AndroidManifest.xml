@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CrimeActivity"
+            android:name=".CrimePagerActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

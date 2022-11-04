@@ -40,7 +40,6 @@ public class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeHolder>
 
     public static class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-
         private final TextView titleTextView;
         private final TextView dateTextView;
         private final ImageView solvedImageView;
@@ -59,7 +58,7 @@ public class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeHolder>
         public void onClick (View view){
             Context context = view.getContext();
 
-            Intent intent = CrimeActivity.newIntent(context, crime.getId());
+            Intent intent = CrimePagerActivity.newIntent(context, crime.getId());
             context.startActivity(intent);
         }
 
